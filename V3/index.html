@@ -138,7 +138,49 @@
         .contact-form button:hover {
             background: #ff8c00;
         }
+        .contact-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .contact-info a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
     </style>
+
+<script>
+    document.querySelector('.contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, message }),
+            });
+
+            if (response.ok) {
+                alert('Your message has been sent!');
+            } else {
+                alert('There was an issue sending your message.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to send the message.');
+        }
+    });
+</script>
+
+
+
 </head>
 <body>
     <!-- Header -->
@@ -189,7 +231,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card services-card">
-                        <img src="https://via.placeholder.com/350x200" alt="Cloud Solutions">
+                        <img src="CS.jfif" alt="Cloud Solutions">
                         <div class="card-body">
                             <h5 class="card-title">Cloud Solutions</h5>
                             <p class="card-text">Seamlessly migrate and manage your business in the cloud with our expert solutions.</p>
@@ -198,7 +240,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card services-card">
-                        <img src="https://via.placeholder.com/350x200" alt="Software Development">
+                        <img src="SD.jfif" alt="Software Development">
                         <div class="card-body">
                             <h5 class="card-title">Software Development</h5>
                             <p class="card-text">Custom software solutions designed to optimize your business processes and outcomes.</p>
@@ -207,10 +249,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card services-card">
-                        <img src="https://via.placeholder.com/350x200" alt="IT Support">
+                        <img src="SA.jfif" alt="Staff Augmentation Solutions">
                         <div class="card-body">
-                            <h5 class="card-title">IT Support</h5>
-                            <p class="card-text">Reliable and prompt IT support to ensure your business operations run smoothly.</p>
+                            <h5 class="card-title">Staff Augmentation Solutions</h5>
+                            <p class="card-text">When it is time to fill a position, we have well qualified candidates for the position.</p>
                         </div>
                     </div>
                 </div>
@@ -220,28 +262,13 @@
 
     <!-- Contact Section -->
     <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <form class="contact-form">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                    </div>
-                </div>
-                <div class="mb-3 mt-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p class="contact-info">If you have any questions, feedback, or need assistance, feel free to reach out to us.</p>
+        <div class="contact-info">
+            <p>Email us at: <a href="mailto:info@example.com">info@example.com</a></p>
         </div>
+    </div>
     </section>
 
     <!-- Footer -->
